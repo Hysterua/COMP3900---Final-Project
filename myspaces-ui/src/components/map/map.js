@@ -34,8 +34,9 @@ export function Map({lat, lng, polylineString, transitMethod}) {
   const [endMarkers, setEndMarkers] = React.useState([]);
   const [polylines, setPolylines] = React.useState([]);
 
+  // To use this add a google maps api key
   const {isLoaded,loadError} = useLoadScript({
-      googleMapsApiKey: "AIzaSyB8Avvqw59kJIJFlnI9fjQPvFaSOT6_TU0" 
+      googleMapsApiKey: "" 
   });
 
   if (loadError) return `Error loading maps ${loadError}`;
