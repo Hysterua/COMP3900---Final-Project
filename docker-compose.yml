@@ -1,0 +1,60 @@
+version: '3.4'
+
+services:
+  pg-database:
+    build:
+      context: ./myspaces-db
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - backend_net
+
+  db-web-ui:
+    image: adminer
+    restart: always
+    depends_on:
+      - pg-database
+    ports:
+      - 8080:8080
+    networks:
+      - backend_net
+
+  python-backend:
+    build:
+      context: ./myspaces-server
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - pg-database
+    ports:
+      - 8000:8000
+    networks:
+      - backend_net
+      - frontend_net
+
+  react-frontend:
+    build:
+      context: ./myspaces-ui
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - python-backend
+    ports:
+      - 3000:3000
+    networks:
+      - frontend_net
+
+networks:
+  frontend_net:
+  backend_net:
+
+volumes:
+  dbdata:

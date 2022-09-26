@@ -1,0 +1,30 @@
+STEPS:
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# can
+sudo docker run hello-world
+
+
+https://docs.docker.com/engine/install/ubuntu/
+
+getting "Got permission denied while trying to connect to the Docker daemon socket"
+sudo chmod 666 /var/run/docker.sock
+
+FOR DEVELOPMENT
+sudo apt install python3-pip
+pip3 install -r requirements.txt
+
+For CLI Docker Compose:
+sudo apt  install docker-compose
+
+
+
+Invite Link for Omers VScode : https://prod.liveshare.vsengsaas.visualstudio.com/join?44DC49D18AE9DC0157BCCE12CEC4CED7C3BD
+
+https://prod.liveshare.vsengsaas.visualstudio.com/join?65093AEF3CE3DC9BC1CBBBABEB0F67A93775

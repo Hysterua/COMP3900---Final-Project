@@ -1,0 +1,6 @@
+.myspaces-logo {
+    display:flex; 
+    flex-direction:row;
+    justify-content: 'flex-start';
+    position: relative;
+}
